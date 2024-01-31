@@ -1,0 +1,160 @@
+.container {
+  width: 280px;
+  min-width: 280px;
+  height: 100vh;
+  padding: 16px 28px;
+  background-color: #fff;
+  border-radius: 16px;
+  position: relative;
+
+  .app-logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+
+    .logo {
+      margin-right: 8px;
+    }
+  }
+
+  .search {
+    margin-top: 20px;
+    border-radius: 20px;
+    border: 1px solid #f1f1f1;
+    padding: 10px 16px;
+    width: 80%;
+    display: flex;
+
+    .search-icon {
+      margin-right: 8px;
+    }
+
+    input {
+      width: calc(100% - 24px);
+      border: none !important;
+
+      &:focus-visible {
+        border: none !important;
+        outline: none !important;
+      }
+    }
+  }
+
+  .sidebar-items-holder {
+    margin-top: 8px;
+  }
+
+  .sidebar-item {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+
+    .icons {
+      margin-right: 12px;
+    }
+
+    .content {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .text {
+      font-size: 14px;
+    }
+
+    .profile-image {
+      margin-right: 12px;
+    }
+
+    .name-holder {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .admin-icon {
+      margin-top: 4px;
+      width: fit-content;
+      padding: 2px 8px;
+      border-radius: 24px;
+      background: #ffcd71;
+    }
+
+    &:hover {
+      box-shadow: 0 0 10px #b4b4b0;
+      cursor: pointer;
+    }
+  }
+
+  .sidebar-bottom-widget {
+    position: absolute;
+    bottom: 20px;
+  }
+
+  .arrow-holder {
+    position: absolute;
+    right: -12px;
+    top: 500px;
+    padding: 9px;
+    border-radius: 8px;
+    background: #f6f6f3;
+
+    &:hover {
+      box-shadow: 0 0 4px #8a8a8a;
+    }
+  }
+}
+
+.shrink {
+  padding: 16px 8px;
+  margin: 0 auto;
+  min-width: unset;
+  max-width: 40px !important;
+  transition: max-width 3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+
+  .app-logo {
+    .logo {
+      margin: 0;
+    }
+  }
+
+  .search {
+    width: 16px;
+    padding: 10px 6px;
+
+    .search-icon {
+      margin: 0;
+    }
+  }
+
+  .sidebar-item {
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 0;
+
+    .profile-image,
+    .icons {
+      margin: 0;
+    }
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.rotate-90 {
+  rotate: 90deg;
+}
+
+.rotate-270 {
+  rotate: 270deg;
+}
+
+.red-text {
+  color: #b01212;
+}

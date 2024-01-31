@@ -1,0 +1,84 @@
+.container {
+  padding: 24px 8px;
+  background-color: white;
+  border-radius: 16px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 16px;
+
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .sort {
+      color: #454545;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .customer-list {
+    margin-top: 16px;
+
+    .card {
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+
+      .content {
+        display: flex;
+
+        .profile-image {
+          margin-right: 12px;
+        }
+
+        .name {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .org {
+          color: #454545;
+          font-size: 12px;
+        }
+      }
+
+      .options {
+        display: none;
+        overflow: hidden;
+        margin-left: 12px;
+
+        .option-icon {
+          padding: 10px;
+        }
+
+        .more-icon {
+          padding-left: 12px;
+          margin-left: 12px;
+          border-left: 1px solid rgba(115, 74, 0, 0.2);
+        }
+      }
+
+      &:hover {
+        background: #fff7e8;
+
+        .options {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin: 16px 0 0 16px;
+    color: #734a00;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+}

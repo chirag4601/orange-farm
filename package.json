@@ -9,9 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.6",
+    "chart.js": "^4.4.1",
+    "classnames": "^2.5.1",
+    "csv": "^6.3.6",
+    "csv-parse": "^5.5.3",
+    "next": "14.0.4",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
-    "next": "14.0.4"
+    "saas": "^1.0.0",
+    "sass": "^1.70.0"
   },
   "devDependencies": {
     "eslint": "^8",

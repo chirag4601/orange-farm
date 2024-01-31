@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  height: 100%;
+
+  .content-holder {
+    width: 100%;
+    margin-left: 16px;
+  }
+
+  .stats-holder {
+    display: flex;
+    flex-wrap: wrap;
+
+    .quarter-widget,
+    .stats-widget {
+      width: calc(50% - 216px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quarter-widget {
+      width: 240px;
+    }
+  }
+
+  .customer-growth-section {
+    margin: 16px 0;
+    display: flex;
+
+    .graph-holder,
+    .customer-widget {
+      width: calc(50% - 16px);
+    }
+
+    .graph-holder {
+      margin-left: 16px;
+    }
+  }
+
+  .chats-deals-section {
+    margin: 16px 0;
+    display: flex;
+
+    .top-states-section,
+    .chat-section {
+      width: calc(30%);
+    }
+
+    .new-deals-section {
+      width: calc(40%);
+    }
+  }
+}
