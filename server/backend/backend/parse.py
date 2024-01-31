@@ -28,6 +28,7 @@ def update_local_cache(s3_url, local_cache_path):
         print(f"Failed to fetch CSV from S3. Status Code: {response.status_code}")
 
 
+#Locally Adaptive Signal Processing (LASP) Algorithm for downSampling
 def downsample_data(arr, target_points=50):
     if not arr:
         return []
@@ -41,14 +42,22 @@ def downsample_data(arr, target_points=50):
         subset = arr[i:i + interval_size]
 
         if subset:
-            # Aggregate the subset (e.g., take the average of profit_percentage)
             timestamp = subset[0]['timestamp']
-            profit_percentage_sum = sum(entry['profit_percentage'] for entry in subset)
-            average_profit_percentage = profit_percentage_sum / len(subset)
-
-            downsampled_arr.append({'timestamp': timestamp, 'profit_percentage': average_profit_percentage})
+            adaptive_average = calculate_adaptive_average(subset)
+            downsampled_arr.append({'timestamp': timestamp, 'adaptive_average': adaptive_average})
 
     return downsampled_arr
+
+def calculate_adaptive_average(subset):
+    if not subset:
+        return 0
+
+    window_size = min(len(subset), 5) 
+    profit_percentage_sum = sum(entry['profit_percentage'] for entry in subset[-window_size:])
+    adaptive_average = profit_percentage_sum / window_size
+
+    return adaptive_average
+
 
 def filter_data_by_interval(arr, interval):
     now = arr[len(arr) -1]["timestamp"]
@@ -63,22 +72,20 @@ def filter_data_by_interval(arr, interval):
     elif interval == '14d':
         start_date = now - timedelta(days=14)
     elif interval == 'Monthly':
-        start_date = now - timedelta(days=30)  # Assuming a month has approximately 30 days
+        start_date = now - timedelta(days=30) 
     elif interval == '60d':
         start_date = now - timedelta(days=60)
     elif interval == '200d':
         start_date = now - timedelta(days=200)
     elif interval == 'Yearly':
-        start_date = now - timedelta(days=365)  # Assuming a year has approximately 365 days
+        start_date = now - timedelta(days=365)
     else:
         start_date = min(entry['timestamp'] for entry in arr)
     
     print("start dtae: :=> ",start_date)
     
     filtered_arr = [entry for entry in arr if entry['timestamp'] >= start_date]
-    
-    # print("filtered_arr: :=> ",filtered_arr)
-    
+
     return downsample_data(filtered_arr)
 
 
@@ -99,19 +106,10 @@ def import_data(s3_url ,local_cache_path, start):
                 entry = {'timestamp': timestamp, 'profit_percentage': profit_percentage}
                 arr.append(entry)
 
-                # arr.append({timestamp, profit_percentage})
             except ValueError as e:
                 print(f"Error processing row: {e}")
             
         
         return filter_data_by_interval(arr, start)
-        
-        # print(file)
-        # reader = csv.DictReader(file)
-        # for row in reader:
-        #     profit = Profit.objects.create(
-        #         published_date=datetime.strptime(row['Timestamp'], '%Y-%m-%d %H:%M:%S').date(),
-        #         price=Decimal(row['Profit Percentage'])
-        #     )
-        #     print(profit)
+
             
