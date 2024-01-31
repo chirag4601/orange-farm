@@ -1,9 +1,31 @@
-from io import StringIO
-import csv
+import os
 import requests
-from datetime import datetime
+import csv
+from io import StringIO
+from datetime import datetime, timedelta
 from decimal import Decimal
-from datetime import timedelta
+
+
+def fetch_and_cache_csv(s3_url, local_cache_path):
+    os.makedirs(os.path.dirname(local_cache_path), exist_ok=True)
+
+    if os.path.exists(local_cache_path):
+        modified_time = datetime.fromtimestamp(os.path.getmtime(local_cache_path))
+        current_time = datetime.now()
+
+        if (current_time - modified_time) > timedelta(days=1):
+            update_local_cache(s3_url, local_cache_path)
+    else:
+        update_local_cache(s3_url, local_cache_path)
+        
+def update_local_cache(s3_url, local_cache_path):
+    response = requests.get(s3_url)
+
+    if response.status_code == 200:
+        with open(local_cache_path, 'w') as cache_file:
+            cache_file.write(response.text)
+    else:
+        print(f"Failed to fetch CSV from S3. Status Code: {response.status_code}")
 
 
 def downsample_data(arr, target_points=50):
@@ -61,11 +83,10 @@ def filter_data_by_interval(arr, interval):
 
 
 
-def import_data(s3_url, start):
-    response = requests.get(s3_url)
-    
-    if response.status_code == 200:
-        csv_content = response.text
+def import_data(s3_url ,local_cache_path, start):
+    fetch_and_cache_csv(s3_url, local_cache_path)
+    with open(local_cache_path, 'r') as cache_file:
+        csv_content = cache_file.read()
         csv_reader = csv.DictReader(StringIO(csv_content))
         
         arr = []

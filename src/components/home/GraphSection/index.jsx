@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import classnames from "classnames";
 
-import Image from "@/libs/Image";
-
 import Chart from "@/components/common/Chart";
 import { getData } from "@/utils/network";
 
@@ -16,9 +14,10 @@ const GraphSection = ({ className }) => {
 
   useEffect(() => {
     setLoading(true);
-    getData(`http://localhost:8000/orangefarm?start=${selectedFilter}`)
+    getData(
+      `https://chirag4601.pythonanywhere.com/orangefarm?start=${selectedFilter}`
+    )
       .then((data) => {
-        console.log(data);
         setLoading(false);
         setGraphData(data.data);
       })
@@ -32,7 +31,6 @@ const GraphSection = ({ className }) => {
         <div className={styles["sort"]}>
           <Select
             options={[
-              { value: "7h", title: "7h" },
               { value: "24h", title: "24h" },
               { value: "7d", title: "7d" },
               { value: "14d", title: "14d" },

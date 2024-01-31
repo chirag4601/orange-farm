@@ -15,7 +15,9 @@ def index(request):
     start_param = request.GET.get('start', None)
     
     csv_file_path = 'https://main-data-backup.s3.us-east-2.amazonaws.com/dataset.csv'  # Replace with your actual file path
-    arr = import_data(csv_file_path, start_param)
+    local_cache_path = "local_cache/dataset.csv"
+    
+    arr = import_data(csv_file_path, local_cache_path, start_param)
         
     for entry in arr:
         entry["timestamp"] = entry["timestamp"].strftime("%Y-%m-%d %H:%M:%S")
