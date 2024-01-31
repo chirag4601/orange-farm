@@ -44,7 +44,7 @@ def downsample_data(arr, target_points=50):
         if subset:
             timestamp = subset[0]['timestamp']
             adaptive_average = calculate_adaptive_average(subset)
-            downsampled_arr.append({'timestamp': timestamp, 'adaptive_average': adaptive_average})
+            downsampled_arr.append({'timestamp': timestamp, 'profit_percentage': adaptive_average})
 
     return downsampled_arr
 
