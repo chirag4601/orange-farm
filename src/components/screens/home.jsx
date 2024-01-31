@@ -80,7 +80,7 @@ const HomeScreen = () => (
             ].map((data, idx) => (
               <TopPerformersWidget
                 key={idx}
-                className={styles[""]}
+                className={styles["widget"]}
                 title={data.title}
                 bottomWidget={data.bottom}
               />

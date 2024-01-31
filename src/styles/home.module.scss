@@ -41,6 +41,15 @@
       display: flex;
       margin-top: 20px;
 
+      .widget {
+        margin-right: 16px;
+        width: calc(33% - 12px);
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
       .top-text {
         color: #734a00;
         font-size: 24px;
