@@ -8,6 +8,8 @@ import NewDealsSection from "@/components/home/NewDealsSection";
 import GraphSection from "@/components/home/GraphSection";
 
 import styles from "@/styles/home.module.scss";
+import TopPerformersWidget from "@/components/home/TopPerformersWidget";
+import Image from "@/libs/Image";
 
 const stats = [
   {
@@ -39,6 +41,51 @@ const HomeScreen = () => (
         <CustomersSection className={styles["customer-widget"]} />
         <div className={styles["graph-holder"]}>
           <GraphSection />
+          <div className={styles["top-performers"]}>
+            {[
+              {
+                title: "Top month",
+                bottom: (
+                  <div>
+                    <div className={styles["top-text"]}>November</div>
+                    <div className={styles["top-subtext"]}>2019</div>
+                  </div>
+                ),
+              },
+              {
+                title: "Top year",
+                bottom: (
+                  <div>
+                    <div className={styles["top-text"]}>2023</div>
+                    <div className={styles["subtext"]}>96K sold so far</div>
+                  </div>
+                ),
+              },
+              {
+                title: "Top buyer",
+                bottom: (
+                  <div>
+                    <Image
+                      height={24}
+                      width={24}
+                      className={styles["image"]}
+                      alt={"image"}
+                      src={"./images/maggie.png"}
+                    />
+                    <div className={styles["name"]}>Maggie Johnson</div>
+                    <div className={styles["org"]}>Oasis Organic Inc.</div>
+                  </div>
+                ),
+              },
+            ].map((data, idx) => (
+              <TopPerformersWidget
+                key={idx}
+                className={styles[""]}
+                title={data.title}
+                bottomWidget={data.bottom}
+              />
+            ))}
+          </div>
         </div>
       </div>{" "}
       <div className={styles["chats-deals-section"]}>
