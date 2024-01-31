@@ -34,13 +34,20 @@ const Sidebar = () => {
     >
       <div className={styles["app-logo"]}>
         <Image
+          className={styles["app-bar"]}
+          alt={"app-bar"}
+          height={20}
+          width={20}
+          src={"./icons/app-bar.svg"}
+        />
+        <Image
           className={styles["logo"]}
           alt={"logo"}
           height={21}
           width={21}
           src={"./icons/logo.png"}
-        />
-        {showSidebar && " OrangeFarm"}
+        />{" "}
+        <div className={styles["app-name"]}> OrangeFarm</div>
       </div>
       <div className={styles["search"]}>
         <Image

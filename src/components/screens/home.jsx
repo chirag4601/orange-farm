@@ -27,6 +27,43 @@ const stats = [
   },
 ];
 
+const TopPerformerData = [
+  {
+    title: "Top month",
+    bottom: (
+      <div>
+        <div className={styles["top-text"]}>November</div>
+        <div className={styles["top-subtext"]}>2019</div>
+      </div>
+    ),
+  },
+  {
+    title: "Top year",
+    bottom: (
+      <div>
+        <div className={styles["top-text"]}>2023</div>
+        <div className={styles["subtext"]}>96K sold so far</div>
+      </div>
+    ),
+  },
+  {
+    title: "Top buyer",
+    bottom: (
+      <div>
+        <Image
+          height={24}
+          width={24}
+          className={styles["image"]}
+          alt={"image"}
+          src={"./images/maggie.png"}
+        />
+        <div className={styles["name"]}>Maggie Johnson</div>
+        <div className={styles["org"]}>Oasis Organic Inc.</div>
+      </div>
+    ),
+  },
+];
+
 const HomeScreen = () => (
   <div className={styles["container"]}>
     <Sidebar />
@@ -42,42 +79,7 @@ const HomeScreen = () => (
         <div className={styles["graph-holder"]}>
           <GraphSection />
           <div className={styles["top-performers"]}>
-            {[
-              {
-                title: "Top month",
-                bottom: (
-                  <div>
-                    <div className={styles["top-text"]}>November</div>
-                    <div className={styles["top-subtext"]}>2019</div>
-                  </div>
-                ),
-              },
-              {
-                title: "Top year",
-                bottom: (
-                  <div>
-                    <div className={styles["top-text"]}>2023</div>
-                    <div className={styles["subtext"]}>96K sold so far</div>
-                  </div>
-                ),
-              },
-              {
-                title: "Top buyer",
-                bottom: (
-                  <div>
-                    <Image
-                      height={24}
-                      width={24}
-                      className={styles["image"]}
-                      alt={"image"}
-                      src={"./images/maggie.png"}
-                    />
-                    <div className={styles["name"]}>Maggie Johnson</div>
-                    <div className={styles["org"]}>Oasis Organic Inc.</div>
-                  </div>
-                ),
-              },
-            ].map((data, idx) => (
+            {TopPerformerData.map((data, idx) => (
               <TopPerformersWidget
                 key={idx}
                 className={styles["widget"]}

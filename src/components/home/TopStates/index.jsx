@@ -37,7 +37,7 @@ const TopStates = ({ className }) => {
 
   return (
     <div className={classnames(styles["container"], className)}>
-      <div className={styles["title"]}>Chats</div>
+      <div className={styles["title"]}>Top states</div>
       <div className={styles["states-list"]}>
         {topStatesData.map((data, idx) => (
           <div key={idx} id={`states-card-${idx}`} className={styles["card"]}>

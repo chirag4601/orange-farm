@@ -10,8 +10,15 @@
   .app-logo {
     display: flex;
     align-items: center;
-    font-size: 24px;
-    font-weight: 700;
+
+    .app-bar {
+      display: none !important;
+    }
+
+    .app-name {
+      font-size: 24px;
+      font-weight: 700;
+    }
 
     .logo {
       margin-right: 8px;
@@ -117,6 +124,14 @@
   align-items: center !important;
 
   .app-logo {
+    .app-bar {
+      display: none !important;
+    }
+
+    .app-name {
+      display: none;
+    }
+
     .logo {
       margin: 0;
     }
@@ -157,4 +172,71 @@
 
 .red-text {
   color: #b01212;
+}
+
+@media (max-width: 992px) {
+  .container {
+    width: 280px;
+    min-width: 280px;
+    margin: 0 auto 20px auto;
+    height: 72vh;
+    padding: 16px 28px;
+    background-color: #fff;
+    border-radius: 16px;
+    position: relative;
+
+    .arrow-holder {
+      top: unset;
+      bottom: -20px;
+      right: 50%;
+    }
+  }
+
+  .shrink {
+    padding: 4px 16px 4px 0;
+    transition: max-height 3s ease-in-out;
+    display: flex;
+    max-height: 40px !important;
+    flex-direction: column;
+    justify-content: center;
+
+    .app-logo {
+      display: flex;
+
+      .app-bar {
+        display: block !important;
+        margin-right: 20px;
+      }
+
+      .app-name {
+        display: block;
+      }
+
+      .logo {
+        margin-right: 8px;
+      }
+    }
+
+    .search,
+    .search-icon,
+    .sidebar-items-holder,
+    .arrow-holder,
+    .sidebar-bottom-widget,
+    .arrow-holder,
+    .arrow {
+      height: 0 !important;
+      width: 0 !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  }
+
+  .rotate-90 {
+    rotate: 180deg;
+  }
+
+  .rotate-270 {
+    rotate: 0deg;
+  }
 }

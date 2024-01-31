@@ -13,7 +13,7 @@
 
     .quarter-widget,
     .stats-widget {
-      width: calc(50% - 216px);
+      width: calc(50% - 208px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -94,6 +94,78 @@
 
     .new-deals-section {
       width: calc(40%);
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .content-holder {
+      width: 100%;
+      margin: 0 16px 0 0;
+    }
+
+    .customer-growth-section {
+      .customer-widget {
+        width: calc(40% - 16px);
+      }
+
+      .graph-holder {
+        width: calc(60% - 16px);
+        margin-left: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .content-holder {
+      margin: 0;
+    }
+
+    .chats-deals-section,
+    .customer-growth-section,
+    .stats-holder {
+      padding: 0;
+      margin: inherit 0 inherit;
+      flex-direction: column;
+      align-items: center;
+
+      .quarter-widget,
+      .chat-section,
+      .top-states-section,
+      .new-deals-section,
+      .customer-widget,
+      .graph-holder,
+      .stats-widget {
+        width: 80%;
+        margin: 0 0 16px 0;
+      }
+
+      .customer-widget,
+      .graph-holder {
+        width: 90%;
+      }
+
+      .graph-holder {
+        align-items: center;
+      }
+
+      .quarter-widget {
+        align-items: center;
+      }
     }
   }
 }
