@@ -1,5 +1,6 @@
-
+from io import StringIO
 import csv
+import requests
 from datetime import datetime
 from decimal import Decimal
 from datetime import timedelta
@@ -59,12 +60,17 @@ def filter_data_by_interval(arr, interval):
     return downsample_data(filtered_arr)
 
 
-def import_data(file_path, start):
-    with open(file_path, 'r') as file:
+
+def import_data(s3_url, start):
+    response = requests.get(s3_url)
+    
+    if response.status_code == 200:
+        csv_content = response.text
+        csv_reader = csv.DictReader(StringIO(csv_content))
+        
         arr = []
         
-        
-        for row in csv.DictReader(file):
+        for row in csv_reader:
             try:
                 timestamp = datetime.strptime(row['Timestamp'], '%Y-%m-%d %H:%M:%S')
                 profit_percentage = Decimal(row['Profit Percentage'])

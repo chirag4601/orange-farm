@@ -14,7 +14,7 @@ def index(request):
     
     start_param = request.GET.get('start', None)
     
-    csv_file_path = 'backend/dataset.csv'  # Replace with your actual file path
+    csv_file_path = 'https://main-data-backup.s3.us-east-2.amazonaws.com/dataset.csv'  # Replace with your actual file path
     arr = import_data(csv_file_path, start_param)
         
     for entry in arr:
