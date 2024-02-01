@@ -35,7 +35,8 @@ const Sidebar = () => {
     <div
       className={classnames(
         styles["container"],
-        !showSidebar ? styles["shrink"] : ""
+        !showSidebar ? styles["shrink"] : "",
+        showHiddenSection ? styles["hidden-visible"] : ""
       )}
       onClick={() => setShowSidebar(true)}
     >
@@ -71,8 +72,11 @@ const Sidebar = () => {
           <>
             <div
               onClick={(ev) => {
-                ev.preventDefault();
-                ev.stopPropagation();
+                if (showSidebar) {
+                  ev.preventDefault();
+                  ev.stopPropagation();
+                }
+
                 if (data.hiddenOptions?.length)
                   setShowHiddenSection(!showHiddenSection);
               }}
