@@ -7,7 +7,13 @@ import styles from "./index.module.scss";
 
 const NavIcons = [
   { icon: "dashboard-sign.png", text: "Dashboard" },
-  { icon: "costomer-sign.png", text: "Customers", downArrow: true },
+  {
+    icon: "costomer-sign.png",
+    selectedIcon: "customer-icon-orange.png",
+    text: "Customers",
+    downArrow: true,
+    hiddenOptions: ["Current", "New", "Negotiating"],
+  },
   { icon: "report-sign.png", text: "All reports" },
   { icon: "globe-sign.png", text: "Geography" },
   { icon: "conversation-sign.png", text: "Conversations" },
@@ -23,6 +29,7 @@ const userData = {
 
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showHiddenSection, setShowHiddenSection] = useState(false);
 
   return (
     <div
@@ -61,28 +68,64 @@ const Sidebar = () => {
       </div>
       <div className={styles["sidebar-items-holder"]}>
         {NavIcons.map((data, idx) => (
-          <div className={styles["sidebar-item"]} key={idx}>
-            <Image
-              height={16}
-              width={16}
-              className={styles["icons"]}
-              alt={""}
-              src={"./icons/" + data.icon}
-            />
-            {showSidebar && (
-              <div className={styles["content"]}>
-                <div className={styles["text"]}>{data.text}</div>
-                {!!data.downArrow && (
-                  <Image
-                    height={16}
-                    width={16}
-                    alt={"arrow"}
-                    src={"./icons/arrow.png"}
-                  />
-                )}
+          <>
+            <div
+              onClick={(ev) => {
+                ev.preventDefault();
+                ev.stopPropagation();
+                if (data.hiddenOptions?.length)
+                  setShowHiddenSection(!showHiddenSection);
+              }}
+              className={classnames(
+                styles["sidebar-item"],
+                showHiddenSection && data.hiddenOptions?.length
+                  ? styles["orange-background"]
+                  : ""
+              )}
+              key={idx}
+            >
+              <Image
+                height={16}
+                width={16}
+                className={styles["icons"]}
+                alt={""}
+                src={`./icons/${
+                  showHiddenSection && !!data.selectedIcon
+                    ? data.selectedIcon
+                    : data.icon
+                }`}
+              />
+              {showSidebar && (
+                <div className={styles["content"]}>
+                  <div className={styles["text"]}>{data.text}</div>
+                  {!!data.downArrow && (
+                    <Image
+                      className={
+                        styles[
+                          showHiddenSection && data.hiddenOptions
+                            ? "rotate-180"
+                            : ""
+                        ]
+                      }
+                      height={16}
+                      width={16}
+                      alt={"arrow"}
+                      src={"./icons/arrow.png"}
+                    />
+                  )}
+                </div>
+              )}
+            </div>
+            {showSidebar && showHiddenSection && (
+              <div className={styles["hidden-section"]}>
+                {data.hiddenOptions?.map((val) => (
+                  <div className={styles["val"]} key={val}>
+                    {val}
+                  </div>
+                ))}
               </div>
             )}
-          </div>
+          </>
         ))}
       </div>
 
